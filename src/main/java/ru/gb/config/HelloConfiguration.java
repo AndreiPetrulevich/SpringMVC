@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan("ru.gb.beans")
+@ComponentScan("ru.gb")
 @PropertySource("classpath:application.properties")
 @EnableWebMvc
 public class HelloConfiguration {
