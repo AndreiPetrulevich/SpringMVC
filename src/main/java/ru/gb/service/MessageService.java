@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MessageService {
 
-
     private final MessageRepository messageRepository;
 
     public Message save(Message message) {

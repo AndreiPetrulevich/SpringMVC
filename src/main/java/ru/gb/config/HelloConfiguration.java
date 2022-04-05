@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 public class HelloConfiguration {
 
-    public static final String RESOLVER_PREFIX = "WEB-INF/view/";
+    public static final String RESOLVER_PREFIX = "/WEB-INF/view/";
     public static final String RESOLVER_SUFFIX = ".jsp";
 
     @Bean

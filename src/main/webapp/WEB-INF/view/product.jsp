@@ -1,4 +1,5 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+%--
   Created by IntelliJ IDEA.
   User: k1netic
   Date: 05.04.2022

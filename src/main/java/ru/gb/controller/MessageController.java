@@ -16,17 +16,6 @@ public class MessageController {
 
     private final MessageService messageService;
 
-   /* @RequestMapping
-    public String printMessage(Model model) {
-        model.addAttribute("msg", messageProvider.getMessage());
-        return "message";
-    }
-
-    @ModelAttribute("additional") // будет добавляться для всех методов в данном контроллере
-    public String getAttribution() {
-        return "attribute for all pages by annotation @ModelAttribute";
-    }*/
-
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showForm(Model model) {
         model.addAttribute("message", new Message());
@@ -78,4 +67,15 @@ public class MessageController {
         model.addAttribute("message", messageService.findById(id));
         return "create-message";
     }
+    /* @RequestMapping
+    public String printMessage(Model model) {
+        model.addAttribute("msg", messageProvider.getMessage());
+        return "message";
+    }
+
+    @ModelAttribute("additional") // будет добавляться для всех методов в данном контроллере
+    public String getAttribution() {
+        return "attribute for all pages by annotation @ModelAttribute";
+    }*/
+
 }

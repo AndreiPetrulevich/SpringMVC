@@ -1,11 +1,13 @@
 package ru.gb.repository;
 
+import org.springframework.stereotype.Component;
 import ru.gb.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ProductRepository {
 
     List<Product> products = new ArrayList<>();

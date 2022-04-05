@@ -1,6 +1,5 @@
 package ru.gb.controller;
 
-import com.jogamp.opengl.Threading;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,7 @@ import ru.gb.model.Product;
 import ru.gb.service.ProductService;
 
 @Controller
-@RequestMapping(name = "/product")
+@RequestMapping("/product")
 @RequiredArgsConstructor
 @Slf4j
 public class ProductController {
@@ -33,14 +32,14 @@ public class ProductController {
         } else {
             productService.editProduct(product);
         }
-        return "redirect:/product/all";
+        return "redirect:/product/allProducts";
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public String getProductById(Model model, @PathVariable Integer id) {
 
         Product product = null;
-        if (id > 0 && id != null) {
+        if (id > 0) {
             try {
                 product = productService.getByID(id);
             } catch (NullPointerException e) {
@@ -54,6 +53,7 @@ public class ProductController {
     @RequestMapping(path = "/allProducts", method = RequestMethod.GET)
     public String getAllProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
+        log.info("model info: {}", model.toString());
         return "product-list";
     }
 
@@ -65,10 +65,10 @@ public class ProductController {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return "redirect:/product/all";
+        return "redirect:/product/allProducts";
     }
 
-    @RequestMapping(path = "/edit", method = RequestMethod.POST)
+    @RequestMapping(path = "/edit", method = RequestMethod.GET)
     public String edit(Model model, @RequestParam Integer id) {
         try {
             model.addAttribute("product", productService.getByID(id));
