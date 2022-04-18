@@ -18,6 +18,10 @@
     <br>
     Price: <form:input path="cost"/>
     <br>
+    Manufacture date: <form:input path="date"/>
+    <br>
+    Manufacturer: <form:input path="manufacturer"/>
+    <br>
     <input type="submit" value="Submit">
 </form:form>
 </body>

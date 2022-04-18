@@ -3,6 +3,7 @@ package ru.gb.config;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import ru.gb.dao.productDao.EMProductDao;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ public class WebConfig implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(HelloConfiguration.class);
+        context.register(JpaConfig.class);
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(context);
 

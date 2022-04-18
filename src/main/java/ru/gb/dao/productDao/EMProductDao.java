@@ -22,7 +22,7 @@ public class EMProductDao implements ProductDao {
     }
 
     @Override
-    public Product findProductByID(Long id) {
+    public Product findProductById(Integer id) {
         TypedQuery<Product> namedQuery = entityManager.createNamedQuery("Product.findProductByID", Product.class);
         namedQuery.setParameter("id", id);
         return namedQuery.getSingleResult();
@@ -51,7 +51,8 @@ public class EMProductDao implements ProductDao {
     }
 
     @Override
-    public void updateProduct(Product product) {
+    public Product updateProduct(Product product) {
         entityManager.refresh(product);
+        return product;
     }
 }

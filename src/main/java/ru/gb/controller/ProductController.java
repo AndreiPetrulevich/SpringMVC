@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.gb.dao.productDao.EMProductDao;
 import ru.gb.entity.Product;
+import ru.gb.service.ProductService;
+
 
 @Controller
 @RequestMapping("/product")
@@ -17,7 +18,7 @@ import ru.gb.entity.Product;
 @Slf4j
 public class ProductController {
 
-    private final EMProductDao productDao;
+    private final ProductService productService;
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     public String showForm(Model model) {
@@ -28,9 +29,9 @@ public class ProductController {
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String processForm(Product product) {
         if (product.getId() == null) {
-            productDao.saveProduct(product);
+            productService.saveProduct(product);
         } else {
-            productDao.updateProduct(product);
+            productService.updateProduct(product);
         }
         return "redirect:/product/allProducts";
     }
@@ -41,7 +42,7 @@ public class ProductController {
         Product product = null;
         if (id > 0) {
             try {
-                product = productDao.findProductByID(Long.valueOf(id));
+                product = productService.findProductById(id);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -52,7 +53,7 @@ public class ProductController {
 
     @RequestMapping(path = "/allProducts", method = RequestMethod.GET)
     public String getAllProducts(Model model) {
-        model.addAttribute("products", productDao.findAllProducts());
+        model.addAttribute("products", productService.findAllProducts());
         log.info("model info: {}", model.toString());
         return "product-list";
     }
@@ -61,7 +62,7 @@ public class ProductController {
     public String deleteByID(@RequestParam Integer id) {
         log.info("deleted: {}", id);
         try {
-            productDao.deleteProductById(id);
+            productService.deleteProductById(id);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -71,7 +72,7 @@ public class ProductController {
     @RequestMapping(path = "/edit", method = RequestMethod.GET)
     public String edit(Model model, @RequestParam Integer id) {
         try {
-            model.addAttribute("product", productDao.findProductByID(Long.valueOf(id)));
+            model.addAttribute("product", productService.findProductById(id));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

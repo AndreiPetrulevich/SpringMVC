@@ -14,8 +14,10 @@
 <body>
 <h2>Title: ${product.title}</h2>
 <h2>Price: ${product.cost}</h2>
+<h2>Manufacture date: ${product.date}</h2>
+<h2>Manufacturer: ${product.manufacturer}</h2>
 
-<c:url var="deleteUrl" value="/message/delete">
+<c:url var="deleteUrl" value="/product/delete">
     <c:param name="id" value="${product.id}"/>
 </c:url>
 
@@ -23,7 +25,7 @@
 
 <br>
 
-<c:url var="editUrl" value="/message/edit">
+<c:url var="editUrl" value="/product/edit">
     <c:param name="id" value="${product.id}"/>
 </c:url>
 
