@@ -23,6 +23,10 @@
             <br>
             Price: ${product.cost}
             <br>
+            Manufacture_date: ${product.date}
+            <br>
+            Manufacturer: ${product.manufacturer.getName()}
+            <br>
         </li>
     </c:forEach>
 </ul>

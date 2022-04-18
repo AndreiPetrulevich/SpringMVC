@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.gb.model.Product;
+import ru.gb.entity.Product;
 import ru.gb.service.ProductService;
+
 
 @Controller
 @RequestMapping("/product")
@@ -28,9 +29,9 @@ public class ProductController {
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String processForm(Product product) {
         if (product.getId() == null) {
-            productService.addProduct(product);
+            productService.saveProduct(product);
         } else {
-            productService.editProduct(product);
+            productService.updateProduct(product);
         }
         return "redirect:/product/allProducts";
     }
@@ -41,7 +42,7 @@ public class ProductController {
         Product product = null;
         if (id > 0) {
             try {
-                product = productService.getByID(id);
+                product = productService.findProductById(id);
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -52,7 +53,7 @@ public class ProductController {
 
     @RequestMapping(path = "/allProducts", method = RequestMethod.GET)
     public String getAllProducts(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("products", productService.findAllProducts());
         log.info("model info: {}", model.toString());
         return "product-list";
     }
@@ -61,7 +62,7 @@ public class ProductController {
     public String deleteByID(@RequestParam Integer id) {
         log.info("deleted: {}", id);
         try {
-            productService.deleteById(id);
+            productService.deleteProductById(id);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -71,7 +72,7 @@ public class ProductController {
     @RequestMapping(path = "/edit", method = RequestMethod.GET)
     public String edit(Model model, @RequestParam Integer id) {
         try {
-            model.addAttribute("product", productService.getByID(id));
+            model.addAttribute("product", productService.findProductById(id));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

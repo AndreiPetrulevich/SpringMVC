@@ -2,8 +2,8 @@ package ru.gb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.model.Product;
-import ru.gb.repository.ProductRepository;
+import ru.gb.dao.productDao.EMProductDao;
+import ru.gb.entity.Product;
 
 import java.util.List;
 
@@ -11,24 +11,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository productRepository;
+    private final EMProductDao productDao;
 
-    public Product addProduct(Product product) {
-        return productRepository.addProduct(product);
+    public Product saveProduct(Product product) {
+        return productDao.saveProduct(product);
     }
 
-    public Product editProduct(Product product) {
-        return productRepository.editProduct(product);
+    public Product updateProduct(Product product) {
+        return productDao.updateProduct(product);
     }
 
-    public Product getByID(Integer id) {
-        return productRepository.getById(id).orElse(new Product());
+    public Product findProductById(Integer id) {
+        return productDao.findProductById(id);
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+    public List<Product> findAllProducts() {
+        return productDao.findAllProducts();
     }
-    public void deleteById(Integer id) {
-        productRepository.deleteProduct(id);
+    public void deleteProductById(Integer id) {
+        productDao.deleteProductById(id);
     }
 }
