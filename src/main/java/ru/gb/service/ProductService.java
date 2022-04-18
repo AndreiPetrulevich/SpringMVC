@@ -1,9 +1,9 @@
+/*
 package ru.gb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.model.Product;
-import ru.gb.repository.ProductRepository;
+import ru.gb.entity.Product;
 
 import java.util.List;
 
@@ -11,7 +11,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository productRepository;
 
     public Product addProduct(Product product) {
         return productRepository.addProduct(product);
@@ -32,3 +31,4 @@ public class ProductService {
         productRepository.deleteProduct(id);
     }
 }
+*/
