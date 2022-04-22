@@ -12,6 +12,7 @@
     <title>Product</title>
 </head>
 <body>
+<%--@elvariable id="product" type=""--%>
 <form:form action="addProduct" modelAttribute="product">
     <form:hidden path="id" value="${product.id}"/>
     Title: <form:input path="title"/>
@@ -20,6 +21,7 @@
     <br>
     Manufacture date: <form:input path="date"/>
     <br>
+
     Manufacturer: <form:input path="manufacturer"/>
     <br>
     <input type="submit" value="Submit">

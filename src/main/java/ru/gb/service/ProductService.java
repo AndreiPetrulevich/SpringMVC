@@ -2,7 +2,7 @@ package ru.gb.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.dao.productDao.EMProductDao;
+import ru.gb.dao.productDao.ProductDao;
 import ru.gb.entity.Product;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final EMProductDao productDao;
+    private final ProductDao productDao;
 
     public Product saveProduct(Product product) {
         return productDao.saveProduct(product);

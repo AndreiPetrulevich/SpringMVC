@@ -51,12 +51,13 @@ public class EMManufacturerDAO implements ManufacturerDAO {
     }
 
     @Override
-    public void update(Manufacturer manufacturer) {
+    public Manufacturer update(Manufacturer manufacturer) {
         if (manufacturer.getId() == null) {
             entityManager.persist(manufacturer);
         } else {
             entityManager.refresh(manufacturer);
         }
+        return manufacturer;
     }
 
     @Override
