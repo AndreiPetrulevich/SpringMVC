@@ -22,7 +22,7 @@
     Manufacture date: <form:input path="date"/>
     <br>
 
-    Manufacturer: <form:input path="manufacturer"/>
+    Manufacturer: <form:input path="${maunfacturer.getName()}"/>
     <br>
     <input type="submit" value="Submit">
 </form:form>

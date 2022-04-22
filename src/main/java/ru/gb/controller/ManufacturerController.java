@@ -64,7 +64,7 @@ public class ManufacturerController {
         return "redirect:/manufacturer/allManufacturers";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String updateManufacturer(Model model, Manufacturer manufacturer) {
         try {
             model.addAttribute("manufacturer", manufacturerService.update(manufacturer));
